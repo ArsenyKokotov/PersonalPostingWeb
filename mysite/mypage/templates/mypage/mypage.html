@@ -1,0 +1,13 @@
+{% extends 'mypage/base.html' %}
+
+{% block title %}
+MyPage
+{% endblock %}
+
+{% block content %}
+<h3>This is me!</h3>
+<p>This is where we see the fun</p>
+{% for td in desc %}
+    <p> {{td.txt_description}} </p>
+{% endfor %}
+{% endblock %}

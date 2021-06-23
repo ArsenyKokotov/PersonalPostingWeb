@@ -1,0 +1,18 @@
+{% extends 'mypage/base.html' %}
+
+{% block title %}
+EditMe
+{% endblock %}
+
+{% block content %}
+<h3>Edit my page</h3>
+<p>This is where the fun starts</p>
+<form method="POST" action="#">
+    {% csrf_token%}
+    <div class="form-group">
+        <label for="inputlg">Large input</label>
+        <input class="form-control input-lg" id="inputlg" type="text", name="Description">
+      </div>
+      <button type="submit", name="addDescription", value="addDescription", class="btn btn-success">Add Description</button>
+</form>
+{% endblock %}
