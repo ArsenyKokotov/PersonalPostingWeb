@@ -7,12 +7,46 @@ EditMe
 {% block content %}
 <h3>Edit my page</h3>
 <p>This is where the fun starts</p>
-<form method="POST" action="#">
-    {% csrf_token%}
-    <div class="form-group">
-        <label for="inputlg">Large input</label>
-        <input class="form-control input-lg" id="inputlg" type="text", name="Description">
-      </div>
-      <button type="submit", name="addDescription", value="addDescription", class="btn btn-success">Add Description</button>
-</form>
+
+<div class="input-group mb-3">
+    <form method="POST" action="" class="form-group" enctype="multipart/form-data">
+        {% csrf_token%}
+        <div class="input-group mb-3"></div>
+            <p style="padding-top:1cm">Create a short description of yourself.</p>
+            {{form_desc.as_p}}
+            <div class="input-group-prepend">
+                <button type="submit", name="addDescription", value="addDescription", class="btn btn-success">Add Description</button>
+            </div>
+        </div>
+    </form>
+
+    <form method="POST" action="" class="form-group" enctype="multipart/form-data">
+        {% csrf_token%}
+        <div class="input-group mb-3"></div>
+            <p style="padding-top:1cm">Add file that you want to display on you page and a short description of that file.</p>
+            {{form_gallery.as_p}}
+            <div class="input-group-prepend">
+                <button type="submit", name="addFile", value="addFile", class="btn btn-success">Add File</button>
+            </div>
+        </div>
+    </form>
+
+    
+</div>
+
+
+    {% if messages %}
+        <div class="d-flex justify-content-center">
+            <ul class="messages">
+                {% for message in messages %}
+                <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+
+
+
+
 {% endblock %}
