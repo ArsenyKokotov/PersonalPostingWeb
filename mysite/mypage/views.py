@@ -7,7 +7,7 @@ from . forms import *
 # Create your views here.
 
 def mypage(response):
-    return render(response, "mypage/mypage.html", {'desc':Description.objects.all()})
+    return render(response, "mypage/mypage.html", {'desc':Description.objects.all(), 'gallery': Gallery.objects.all()})
 
 def edit_mypage(response):
 
