@@ -8,21 +8,22 @@ MyPage
     <h3>This is me!</h3>
     <p>This is where we see the fun</p>
 
-    <div>
-    {% for td in desc %}
-        <p> {{td.txt_description}} </p>
-        {% if td.profile_pic  %}
-            <img src="{{td.profile_pic.url}}">
-        {% endif %}
-    {% endfor %}
-    </div>
-
-    <div style="padding: 1cm;">
-        <p>These are my files</p>
-        <ul>
-        {% for gl in gallery %}
-            <li><a href="{{gl.new_file.url}}"> {{gl.txt}} </a></li>
+        <div>
+        {% for td in desc %}
+            <p> {{td.txt_description}} </p>
+            {% if td.profile_pic  %}
+                <img src="{{td.profile_pic.url}}">
+            {% endif %}
         {% endfor %}
-        </ul>
-    </div>
+        </div>
+
+        <div style="padding: 1cm;">
+            <p>These are my files</p>
+            <ul>
+            {% for gl in gallery %}
+                <li><a href="{{gl.new_file.url}}"> {{gl.txt}} </a></li>
+            {% endfor %}
+            </ul>
+        </div>
+
 {% endblock %}

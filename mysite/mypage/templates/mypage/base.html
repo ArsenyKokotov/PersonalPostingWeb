@@ -42,12 +42,14 @@
 </head>
 <body>
 
-    <div class="sidenav">
-        <a href="">Home</a>
-        <a href="/mypage">My Page</a>
-        <a href="/edit_mypage">Edit</a>
-        <a href="/logout/">Logout</a>
-    </div>
+    {% if user.is_authenticated %}
+        <div class="sidenav">
+            <a href="">Home</a>
+            <a href="/mypage/{{user.get_short_name}}">My Page </a>
+            <a href="/edit_mypage">Edit</a>
+            <a href="/logout/">Logout</a>
+        </div>
+    {% endif %}
 
     <div id="content", name="content", class="main">
         <div class="row justify-content-center">
