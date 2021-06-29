@@ -8,8 +8,17 @@ Create an Account
 
 {% block content %}
     <form method="POST" class="form-group">
-        {% csrf_token%}
+        {% csrf_token %}
         {{ form|crispy }}
         <button type="submit" class="btn btn-success">Register</button>
     </form>
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+        {% endfor %}
+
+    {% endif %}
+
 {% endblock %}
+

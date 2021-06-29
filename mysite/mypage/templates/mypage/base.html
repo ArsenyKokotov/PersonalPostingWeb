@@ -44,8 +44,7 @@
 
     {% if user.is_authenticated %}
         <div class="sidenav">
-            <a href="">Home</a>
-            <a href="/mypage/{{user.get_short_name}}">My Page </a>
+            <a href="/mypage/{{user.get_username}}">My Page </a>
             <a href="/edit_mypage">Edit</a>
             <a href="/logout/">Logout</a>
         </div>

@@ -14,8 +14,12 @@ class CreateDescription(forms.ModelForm):
 class CreateGallery(forms.ModelForm):
     class Meta:
         model = Gallery
-        fields = ['txt', 'new_file']
+        fields = ['name', 'txt', 'new_file']
         labels = {
+            'name': 'Name your file',
             'txt': 'Describe your file',
             'new_file': 'Choose your file '
         }
+
+class DeleteNamedFile(forms.Form):
+    name = forms.CharField(label="Input name of file you want to delete ", max_length=20)
