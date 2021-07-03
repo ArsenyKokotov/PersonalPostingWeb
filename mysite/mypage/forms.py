@@ -10,6 +10,7 @@ class CreateDescription(forms.ModelForm):
             'txt_description': 'Describe yourself',
             'profile_pic': 'Choose your profile pic ', 
         }
+        
 
 class CreateGallery(forms.ModelForm):
     class Meta:

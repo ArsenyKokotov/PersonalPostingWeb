@@ -10,7 +10,7 @@ EditMe
 
 <div class="input-group mb-3">
     <form method="POST" action="" class="form-group" enctype="multipart/form-data">
-        {% csrf_token%}
+        {% csrf_token %}
         <div class="input-group mb-3"></div>
             <h5 style="padding-top:1cm">Create a short description of yourself.</h5>
             {{form_desc.as_p}}
@@ -20,11 +20,9 @@ EditMe
       
     </form>
 
-    <div>
     <form method="POST" action="" class="form-group" enctype="multipart/form-data">
-        {% csrf_token%}
+        {% csrf_token %}
         <div class="input-group mb-3"></div>
-        
             <h5 style="padding-top:1cm">Add file that you want to display on you page and a short description of that file.</h5>
             {{form_gallery.as_p}}
             <div class="input-group-prepend">
@@ -38,12 +36,11 @@ EditMe
         {% endfor %}
     {% endif %}
 
-</div>
 
     
 
     <form method="POST" action="" class="form-group" enctype="multipart/form-data">
-        {% csrf_token%}
+        {% csrf_token %}
         <div class="input-group mb-3"></div>
             <h5 style="padding-top:1cm">To delete a file:</h5>
             {{form_delete.as_p}}

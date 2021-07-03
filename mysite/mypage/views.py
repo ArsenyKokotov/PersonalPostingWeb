@@ -19,14 +19,19 @@ def mypage(response, name):
             description=Description.objects.filter(user=u)
             gallery=Gallery.objects.filter(user=u)
             return render(response, "mypage/mypage.html", {'desc':description, 'gallery': gallery})
-            break
     return HttpResponseNotFound('<h1>Page not found</h1><h3>Is it possible that you made an error writting the name?</h3')
 
 
 @login_required(login_url='/login/')
 def edit_mypage(response):
 
-    form_desc = CreateDescription()
+    if  Description.objects.filter(user=response.user).exists() == False:
+        form_desc = CreateDescription()
+    else:
+        default_text = Description.objects.get(user=response.user)
+        form_desc = CreateDescription(initial={'txt_description': default_text})
+        print("jaja")
+
     form_gallery = CreateGallery()
     form_delete = DeleteNamedFile()
 
@@ -39,6 +44,7 @@ def edit_mypage(response):
 
             txt = form_desc.cleaned_data["txt_description"]
             pic = form_desc.cleaned_data["profile_pic"]
+            print(pic)
 
             if  Description.objects.filter(user=response.user).exists() == False:
                 desc = Description(txt_description=txt, profile_pic=pic)
@@ -48,10 +54,11 @@ def edit_mypage(response):
             else: 
                 if pic==None :
                     Description.objects.filter(user=response.user).update(txt_description=txt)
-                elif len(txt) == 0:
-                    Description.objects.filter(user=response.user).update(profile_pic=pic)
                 else:
-                    Description.objects.filter(user=response.user).update(txt_description=txt, profile_pic=pic)
+                    Description.objects.filter(user=response.user).delete() #delete old decription
+                    desc = Description(txt_description=txt, profile_pic=pic) 
+                    desc.save()
+                    response.user.description.add(desc)
                 return HttpResponseRedirect('/mypage/'+response.user.get_username())
 
 
@@ -69,10 +76,9 @@ def edit_mypage(response):
             except IntegrityError as err:
                 messages.success(response, 'A document with such a name already exists!')
                 return HttpResponseRedirect('/edit_mypage/')
-
+       
         if form_delete.is_valid():
             file_name=form_gallery.cleaned_data["name"]
             delete_file = response.user.gallery.filter(name=file_name)
             delete_file.delete()
-
     return render(response, "mypage/edit_mypage.html", {"form_desc":form_desc, "form_gallery":form_gallery, "form_delete":form_delete})
