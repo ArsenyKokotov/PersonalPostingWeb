@@ -2,6 +2,11 @@
 <html>
 <head>
     <style type="text/css">
+
+        body.base {
+            background-color:cornsilk;
+        }
+
         .sidenav {
             height:100%;
             width:160px;
@@ -40,7 +45,7 @@
 
     <title>{% block title %}My Django Website{% endblock %}</title>
 </head>
-<body>
+<body class="base">
 
     {% if user.is_authenticated %}
         <div class="sidenav">
@@ -53,9 +58,9 @@
     <div id="content", name="content", class="main">
         <div class="row justify-content-center">
             <div class="col-8">
-                <h1 class="mt-2">My Site</h1>
                 <hr class="mt-0 mb-4">
                 {% block content %}
+                <h1 class="mt-2">My Site</h1>
                 {% endblock %}
             </div>
         </div>

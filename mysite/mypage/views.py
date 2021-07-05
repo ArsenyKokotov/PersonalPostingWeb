@@ -8,9 +8,6 @@ from django.db import IntegrityError
 
 # Create your views here.
 
-def goto_mypage(response):
-    return HttpResponseRedirect('/mypage/'+response.user.get_short_name())
-
 #@login_required(login_url='/login/')
 def mypage(response, name):
     users=User.objects.all()
@@ -18,7 +15,7 @@ def mypage(response, name):
         if u.get_username() == name:
             description=Description.objects.filter(user=u)
             gallery=Gallery.objects.filter(user=u)
-            return render(response, "mypage/mypage.html", {'desc':description, 'gallery': gallery})
+            return render(response, "mypage/mypage.html", {'desc':description, 'gallery': gallery, 'name': User.objects.get(username=name).get_full_name()})
     return HttpResponseNotFound('<h1>Page not found</h1><h3>Is it possible that you made an error writting the name?</h3')
 
 
